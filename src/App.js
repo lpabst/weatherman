@@ -15,7 +15,7 @@ class App extends Component {
 
 	renderChildren(){
 		if (this.props.error){
-			return <ErrorMessage reset={ reset } />
+			return <ErrorMessage reset={ this.props.reset } />
 		}
 		if (this.props.loading){
 			return <img src={ hourglass } />
@@ -23,7 +23,7 @@ class App extends Component {
 		if (this.props.search){
 			return <EnterLocation />
 		}
-		return <CurrentWeather reset={ reset } weather={ this.props.weather } />
+		return <CurrentWeather reset={ this.props.reset } weather={ this.props.weather } />
 	}
 
 	render() {
@@ -39,4 +39,4 @@ class App extends Component {
 	}
 }
 
-export default connect( state => state, { reset } )( App );
+export default connect( state => state || {search:true}, { reset } )( App );
