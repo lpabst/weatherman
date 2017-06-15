@@ -49,10 +49,9 @@ export function reset() {
 }
 
 export function setWeather(location){
-  // var URL = buildURL(location);
-  var URL = 'api.openweathermap.org/data/2.5/weather?q=provo&appid=a4de2f635bec41b2f05fca35f319ee33';
-  var promise = axios.get( URL ).then(res => {
-    formatWeatherData(res.data);
+  var URL = buildURL(location);
+  const promise = axios.get( URL ).then(res => {
+    return formatWeatherData(res.data);
   })
   return {
     type: SET_WEATHER,
